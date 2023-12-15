@@ -3,5 +3,6 @@ module.exports = {
     ios: {
       automaticPodsInstallation: true
     }
-  }
+  },
+  assets: ['./App/assets/fonts'],
 }

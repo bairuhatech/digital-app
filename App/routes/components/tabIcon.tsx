@@ -9,6 +9,8 @@ export const TabIcons = (route: any, focused: any, color: any, size: any) => {
     Icon = <MaterialCommunityIcons name="play-speed" color={color} size={30} />;
   } else if (route.name === 'Reels') {
     Icon = <Foundation name="play-video" color={color} size={30} />;
+  }else if (route.name === 'Reelss') {
+    Icon = <Foundation name="play-video" color={color} size={30} />;
   }
   return Icon;
 };

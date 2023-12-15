@@ -2,7 +2,7 @@ import {CommonActions} from '@react-navigation/native';
 import React, {useEffect} from 'react';
 import {Image, StatusBar, Text, View, useColorScheme} from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import LOGO_MAIN from '../../assets/images/logoblack.png';
+
 
 import styles from './styles';
 import COLOR from '../../config/color';
@@ -12,6 +12,7 @@ export default function SplashScreen(props: any) {
   useEffect(() => {
     checkAuth();
   }, []);
+  
   const checkAuth = () => {
     setTimeout(() => {
       props.navigation.dispatch(
@@ -33,7 +34,7 @@ export default function SplashScreen(props: any) {
       />
       <Animatable.View animation={'zoomIn'}>
         <Image
-          source={LOGO_MAIN}
+          source={require("../../assets/images/logoblack.png")}
           style={{width: 150, height: 150}}
           resizeMode="contain"
         />

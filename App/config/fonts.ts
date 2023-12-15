@@ -1,7 +1,8 @@
 const FONTS: any = {
-  Regular: '',
-  Medium: '',
-  SemiBold: '',
-  Bold: '',
+  Light:"Overpass-Light",
+  Regular: 'Overpass-Regular',
+  Medium: 'Overpass-Medium',
+  SemiBold: 'Overpass-SemiBold',
+  Bold: 'Overpass-Bold',
 };
 export default FONTS;

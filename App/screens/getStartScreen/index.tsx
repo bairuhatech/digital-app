@@ -1,42 +1,52 @@
-import React, { useState } from 'react';
-import { FlatList, StatusBar, Text, View, useColorScheme ,TouchableOpacity} from 'react-native';
-import COLOR from '../../config/color';
-import styles from './styles';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState } from "react";
+import {
+  FlatList,
+  StatusBar,
+  Text,
+  View,
+  useColorScheme,
+  TouchableOpacity,
+} from "react-native";
+import COLOR from "../../config/color";
+import styles from "./styles";
+import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import { changeFisrtTime } from "../../redux/slice/AuthSlice";
 
-const GetStartScreen = (props:any) => {
-  const navigation:any = useNavigation();
+const GetStartScreen = (props: any) => {
+  const dispatch:any=useDispatch()
+  const navigation: any = useNavigation();
   const Theme = useColorScheme();
   const [currentPage, setCurrentPage] = useState(0);
   const data = [
-    {name: 'dssd', title: 'sdvfvdddv', image: 'fsfd'},
-    {name: 'sfvd', title: 'svdsvfgarw', image: 'fsfd'},
-    {name: 'fsv', title: 'rfgaegrFE', image: 'fsfd'},
+    { name: "dssd", title: "sdvfvdddv", image: "fsfd" },
+    { name: "sfvd", title: "svdsvfgarw", image: "fsfd" },
+    { name: "fsv", title: "rfgaegrFE", image: "fsfd" },
   ];
 
   const totalPages = data.length;
 
   const nextPage = () => {
-    setCurrentPage(current => Math.min(current + 1, totalPages - 1));
+    setCurrentPage((current) => Math.min(current + 1, totalPages - 1));
   };
 
   const prevPage = () => {
-    setCurrentPage(current => Math.max(current - 1, 0));
+    setCurrentPage((current) => Math.max(current - 1, 0));
   };
   const skipToPage = () => {
-    console.log("dsddsdsdd")
-    navigation.navigate("home")
+    dispatch(changeFisrtTime(false))
+    navigation.navigate("home");
   };
 
-  const renderItems = ({item}: any) => {
+  const renderItems = ({ item }: any) => {
     return (
       <View
         style={{
           flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center',
-     
-        }}>
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <Text>{item.name}</Text>
       </View>
     );
@@ -45,13 +55,35 @@ const GetStartScreen = (props:any) => {
   return (
     <View style={styles(Theme).Screen}>
       <StatusBar
-        backgroundColor={
-          Theme === 'dark' ? COLOR.dark_bg : COLOR.light_bg
-        }
-        barStyle={Theme === 'dark' ? 'light-content' : 'dark-content'}
+        backgroundColor={Theme === "dark" ? COLOR.dark_bg : COLOR.light_bg}
+        barStyle={Theme === "dark" ? "light-content" : "dark-content"}
       />
       <FlatList
-        ListHeaderComponent={<TouchableOpacity onPress={skipToPage} style={{backgroundColor:COLOR.primary,padding:20,margin:20}}><Text>skip</Text></TouchableOpacity>}
+        ListHeaderComponent={
+          <View>
+            <TouchableOpacity
+              style={{
+                padding: 20,
+                margin: 10,
+                backgroundColor: COLOR.primary,
+              }}
+              onPress={nextPage}
+            >
+              <Text>next</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={{
+                padding: 20,
+                margin: 10,
+                backgroundColor: COLOR.primary,
+              }}
+              onPress={skipToPage}
+            >
+              <Text>Skip</Text>
+            </TouchableOpacity>
+          </View>
+        }
         data={data.slice(currentPage, currentPage + 1)}
         renderItem={renderItems}
         horizontal

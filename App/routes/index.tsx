@@ -1,16 +1,16 @@
-import * as React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import * as React from "react";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import COLOR from '../config/color';
-import {TabIcons} from './components/tabIcon';
-import {HomeHeader} from './components/homeHeader';
+import COLOR from "../config/color";
+import { TabIcons } from "./components/tabIcon";
 
-import SplashScreen from '../screens/splashScreen';
-import HomeScreen from '../screens/homeScreen';
-import GetStartScreen from '../screens/getStartScreen';
-import { useColorScheme } from 'react-native';
-
+import SplashScreen from "../screens/splashScreen";
+import HomeScreen from "../screens/homeScreen";
+import GetStartScreen from "../screens/getStartScreen";
+import { useColorScheme } from "react-native";
+import LoginScreen from "../screens/loginScreen";
+import SignUpScreen from "../screens/signupScreen";
 
 const Stack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();
@@ -20,64 +20,80 @@ function HomeTabs() {
   return (
     <Tabs.Navigator
       initialRouteName="HomeTabs"
-      screenOptions={({route}) => ({
-        tabBarIcon: ({focused, color, size}) => {
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
           return TabIcons(route, focused, color, size);
         },
+
         tabBarInactiveTintColor:
-          Theme === 'dark' ? COLOR.dark_text1 : COLOR.light_text1,
-        tabBarActiveTintColor:
-          Theme === 'dark' ? COLOR.primary : COLOR.primary,
+          Theme === "dark" ? COLOR.dark_text1 : COLOR.light_text1,
+        tabBarActiveTintColor: Theme === "dark" ? COLOR.primary : COLOR.primary,
         tabBarShowLabel: false,
         tabBarStyle: {
+          borderTopWidth: 0,
+          elevation: 0,
           height: 55,
-          borderTopColor: Theme === 'dark' ? COLOR.dark_text1 : '#fff',
-          backgroundColor:
-            Theme === 'dark' ? COLOR.dark_bg : COLOR.light_bg,
+          // borderTopColor: Theme === 'dark' ? COLOR.dark_text1 : '#fff',
+          backgroundColor: Theme === "dark" ? COLOR.dark_bg : COLOR.light_bg,
         },
-      })}>
+      })}
+    >
       <Tabs.Screen
         name="Overview"
         component={HomeScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Tabs.Screen
         name="Stories"
         component={HomeScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Tabs.Screen
         name="Reels"
         component={HomeScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
+      />
+      <Tabs.Screen
+        name="Reelss"
+        component={HomeScreen}
+        options={{ headerShown: false }}
       />
     </Tabs.Navigator>
   );
 }
 
-
 export default function Routes() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerTitleAlign: 'center',
-      }}>
+        headerTitleAlign: "center",
+      }}
+    >
       <Stack.Screen
         name="splashscreen"
         component={SplashScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="getStartScreen"
         component={GetStartScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="login"
+        component={LoginScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="signup"
+        component={SignUpScreen}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="home"
         component={HomeTabs}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
-
     </Stack.Navigator>
   );
 }

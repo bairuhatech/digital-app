@@ -6,8 +6,17 @@ const styles = (state: any) => {
     Screen: {
       flex: 1,
       backgroundColor: theme === 'dark' ? COLOR.dark_bg : COLOR.light_bg,
+      padding: 14,
+      paddingTop: 7,
+      paddingBottom: 0,
     },
-    logo: {},
+    LoginBtn:{
+      backgroundColor: theme === 'dark' ? COLOR.primary : COLOR.primary,
+      padding:10,
+      borderRadius:5,
+      justifyContent:"center"
+    }
+
   });
 };
 
